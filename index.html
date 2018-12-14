@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript test</title>
+        <style>
+            .button{
+                cursor:pointer; 
+                display: inline-block; 
+                width: 88px;
+                height: 44px; 
+                border: 2px solid black; 
+                text-align: center;
+                background: rgb(228, 225, 225);
+                opacity: 0.5;
+            }
+            input{
+                font-size: 32px;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div style="margin: 0 auto;">
+            <input type = "text" name="input" id="display" value="" readonly/>
+            <div id=buttons>
+                <div style="margin: 10px 0px 0px 0px">
+                    <div id="clear" class="button"><strong>C</strong></div>
+                    <div id="back" class="button"><strong>&lt=</strong></div>
+                    <div id="proc" class="button"><strong>%</strong></div>
+                    <div id="division" class="button"><strong>/</strong></div>
+                </div>
+                <div style="margin: 10px 0px 0px 0px">
+                    <div id="1" class="button"><strong>1</strong></div>
+                    <div id="2" class="button"><strong>2</strong></div>
+                    <div id="3" class="button"><strong>3</strong></div>
+                    <div id="produs" class="button"><strong>X</strong></div>
+                </div>
+                <div style="margin: 10px 0px">
+                    <div id="4" class="button"><strong>4</strong></div>
+                    <div id="5" class="button"><strong>5</strong></div>
+                    <div id="6" class="button"><strong>6</strong></div>
+                    <div id="diff" class="button"><strong>-</strong></div>
+                </div> 
+                <div>
+                    <div id="7" class="button"><strong>7</strong></div>
+                    <div id="8" class="button"><strong>8</strong></div>
+                    <div id="9" class="button"><strong>9</strong></div>
+                    <div id="sum" class="button"><strong>+</strong></div>
+                </div>
+                <div style="margin: 10px 0px">
+                    <div class="button"><string></strong></div>
+                    <div id="0" class="button"><strong>0</strong></div>
+                    <div id="dot" class="button"><strong>.</strong></div>
+                    <div id="egal" class="button"><strong>=</strong></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var val1;
+            var val2;
+            var op = "";
+            var frac = 0;
+           
+            window.addEventListener('load', onPageLoad);
+            function onPageLoad(){
+                console.info("page loaded");
+                // div1.addEventListener("mouseover", function(e){
+                //     div1.style.cursor='pointer';
+                //    // div1.setAttribute('style', 'cursor:pointer'); //rescrie tot stilul
+                //    div1.style.color="red";
+                //    div1.style.opacity=0.5;
+                // });
+                // div1.onmouseleave=function(){
+                //     div1.style.opacity=1;
+                // };
+                // div1.addEventListener("click", function(e){
+                //     alert("Hellow user");
+                // })  ; 
+                clear.addEventListener("click", function(e){clearAll()});
+                clear.onmouseover = function(){clearStyle(this, "red", 0.9)};
+                clear.onmouseleave = function(){clearStyle(this, "rgb(228, 225, 225)", 0.4)}
+                back.addEventListener("click", function(e){});
+                proc.addEventListener("click", function(e){oper("%")});
+                proc.onmouseover = function(){buttonStyle(this, 0.9)};
+                proc.onmouseleave = function(){buttonStyle(this, 0.4)}
+                divide.addEventListener("click", function(e){oper("/")});
+                divide.onmouseover = function(){buttonStyle(this, 0.9)};
+                divide.onmouseleave = function(){buttonStyle(this, 0.4)}
+                unu.onclick = function(){cifre( unu.innerText)};
+                unu.onmouseover = function(){buttonStyle(this, 0.9)};
+                unu.onmouseleave = function(){buttonStyle(this, 0.4)}
+                doi.addEventListener("click", function(e){cifre(doi.innerText)});
+                doi.onmouseover = function(){buttonStyle(this, 0.9)};
+                doi.onmouseleave = function(){buttonStyle(this, 0.4)}
+                trei.addEventListener("click",  function(e){cifre(trei.innerText)});
+                trei.onmouseover = function(){buttonStyle(this, 0.9)};
+                trei.onmouseleave = function(){buttonStyle(this, 0.4)}
+                patru.addEventListener("click",  function(e){cifre(patru.innerText)});
+                patru.onmouseover = function(){buttonStyle(this, 0.9)};
+                patru.onmouseleave = function(){buttonStyle(this, 0.4)}
+                cinci.addEventListener("click",  function(e){cifre(cinci.innerText)});
+                cinci.onmouseover = function(){buttonStyle(this, 0.9)};
+                cinci.onmouseleave = function(){buttonStyle(this, 0.4)}
+                sase.addEventListener("click",  function(e){cifre(sase.innerText)});
+                sase.onmouseover = function(){buttonStyle(this, 0.9)};
+                sase.onmouseleave = function(){buttonStyle(this, 0.4)}
+                sapte.addEventListener("click",  function(e){cifre(sapte.innerText)});
+                sapte.onmouseover = function(){buttonStyle(this, 0.9)};
+                sapte.onmouseleave = function(){buttonStyle(this, 0.4)}
+                opt.addEventListener("click",  function(e){cifre(opt.innerText)});
+                opt.onmouseover = function(){buttonStyle(this, 0.9)};
+                opt.onmouseleave = function(){buttonStyle(this, 0.4)}
+                noua.addEventListener("click",  function(e){cifre(noua.innerText)});
+                noua.onmouseover = function(){buttonStyle(this, 0.9)};
+                noua.onmouseleave = function(){buttonStyle(this, 0.4)}
+                zero.addEventListener("click",  function(e){cifre(zero.innerText)});
+                zero.onmouseover = function(){buttonStyle(this, 0.9)};
+                zero.onmouseleave = function(){buttonStyle(this, 0.4)}
+                prod.addEventListener("click", function(e){oper("*")});
+                prod.onmouseover = function(){buttonStyle(this, 0.9)};
+                prod.onmouseleave = function(){buttonStyle(this, 0.4)}
+                diff.addEventListener("click", function(e){oper("-")});
+                diff.onmouseover = function(){buttonStyle(this, 0.9)};
+                diff.onmouseleave = function(){buttonStyle(this, 0.4)}
+                sum.addEventListener("click", function(e){oper("+")});
+                sum.onmouseover = function(){buttonStyle(this, 0.9)};
+                sum.onmouseleave = function(){buttonStyle(this, 0.4)}
+                egal.addEventListener("click", function(e){oper("=")});
+                egal.onmouseover = function(){clearStyle(this, "green", 0.9)};
+                egal.onmouseleave = function(){clearStyle(this, "rgb(228, 225, 225)", 0.4)}
+                frac.addEventListener("click", function(e){activeFrac()});
+                frac.onmouseover = function(){buttonStyle(this, 0.9)};
+                frac.onmouseleave = function(){buttonStyle(this, 0.4)}
+            }
+
+            function clearStyle(btn, bgColor, opaciti){
+                btn.style.background = bgColor;
+                btn.style.opacity = opaciti;
+            }
+
+            function buttonStyle(btn, opaciti){
+                btn.style.opacity = opaciti;
+            }
+
+            function activeFrac(){
+                frac = 1;
+                display.value +=".";
+            }
+            function oper(op1){
+                if (val2 == 0){
+                    val2 = val1;
+                    if (frac > 0)
+                        val2 /=frac;
+                    val1 = 0;
+                    frac = 0;
+                } else {
+                    if (frac > 0){
+                        val1 /= frac;
+                        frac = 0;
+                    }
+                }
+                switch(op){
+                    case "+": val2 +=val1; val1 = 0;break;
+                    case "-": val2 -= val1; val1 = 0;break;
+                    case "*": val2 *= val1; val1 = 0; break;
+                    case "/": val2 /= val1; val1 = 0; break;break;
+                    case "%": val2 %= val1; val1 = 0; break;break;
+                    
+                }
+                op = op1;
+                display.value +=op;
+                if (op == "="){
+                    op = ""; 
+                    display.value = val2; 
+                    val1 = val2;
+                    val2 = 0;
+                }
+                console.log(val2);
+            }
+            function clearAll(){
+                display.value = "";
+                val1 = 0;
+                val2 = 0;
+            }
+            function cifre( cifra){
+                val1 = val1 * 10 + parseInt(cifra);
+                display.value += (cifra);
+                frac *= 10;
+            }
+            var clear = document.getElementById("clear");
+            var back = document.getElementById("back");
+            var proc = document.getElementById("proc");
+            var divide = document.getElementById("division");
+            var unu = document.getElementById("1");
+            var doi = document.getElementById("2");
+            var trei = document.getElementById("3");
+            var patru = document.getElementById("4");
+            var cinci = document.getElementById("5");
+            var sase = document.getElementById("6");
+            var sapte = document.getElementById("7");
+            var opt = document.getElementById("8");
+            var noua = document.getElementById("9");
+            var zero = document.getElementById("0");
+            var prod = document.getElementById("produs");
+            var diff = document.getElementById("diff");
+            var sum = document.getElementById("sum");
+            var egal = document.getElementById("egal");
+            var frac = document.getElementById("dot");
+            var display = document.getElementById("display");
+            clearAll();
+            //div1.style.backgroundColor = "green";
+        </script>
+    </body>
+</html>
