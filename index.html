@@ -58,10 +58,6 @@
             </div>
         </div>
         <script>
-            var val1;
-            var val2;
-            var op = "";
-            var frac = 0;
            
             window.addEventListener('load', onPageLoad);
             function onPageLoad(){
@@ -82,10 +78,10 @@
                 clear.onmouseover = function(){clearStyle(this, "red", 0.9)};
                 clear.onmouseleave = function(){clearStyle(this, "rgb(228, 225, 225)", 0.4)}
                 back.addEventListener("click", function(e){});
-                proc.addEventListener("click", function(e){oper("%")});
+                proc.addEventListener("click", function(e){cifre("%")});
                 proc.onmouseover = function(){buttonStyle(this, 0.9)};
                 proc.onmouseleave = function(){buttonStyle(this, 0.4)}
-                divide.addEventListener("click", function(e){oper("/")});
+                divide.addEventListener("click", function(e){cifre("/")});
                 divide.onmouseover = function(){buttonStyle(this, 0.9)};
                 divide.onmouseleave = function(){buttonStyle(this, 0.4)}
                 unu.onclick = function(){cifre( unu.innerText)};
@@ -118,19 +114,19 @@
                 zero.addEventListener("click",  function(e){cifre(zero.innerText)});
                 zero.onmouseover = function(){buttonStyle(this, 0.9)};
                 zero.onmouseleave = function(){buttonStyle(this, 0.4)}
-                prod.addEventListener("click", function(e){oper("*")});
+                prod.addEventListener("click", function(e){cifre("*")});
                 prod.onmouseover = function(){buttonStyle(this, 0.9)};
                 prod.onmouseleave = function(){buttonStyle(this, 0.4)}
-                diff.addEventListener("click", function(e){oper("-")});
+                diff.addEventListener("click", function(e){cifre("-")});
                 diff.onmouseover = function(){buttonStyle(this, 0.9)};
                 diff.onmouseleave = function(){buttonStyle(this, 0.4)}
-                sum.addEventListener("click", function(e){oper("+")});
+                sum.addEventListener("click", function(e){cifre("+")});
                 sum.onmouseover = function(){buttonStyle(this, 0.9)};
                 sum.onmouseleave = function(){buttonStyle(this, 0.4)}
-                egal.addEventListener("click", function(e){oper("=")});
+                egal.addEventListener("click", function(e){cifre("=")});
                 egal.onmouseover = function(){clearStyle(this, "green", 0.9)};
                 egal.onmouseleave = function(){clearStyle(this, "rgb(228, 225, 225)", 0.4)}
-                frac.addEventListener("click", function(e){activeFrac()});
+                frac.addEventListener("click", function(e){cifre(".")});
                 frac.onmouseover = function(){buttonStyle(this, 0.9)};
                 frac.onmouseleave = function(){buttonStyle(this, 0.4)}
             }
@@ -144,50 +140,20 @@
                 btn.style.opacity = opaciti;
             }
 
-            function activeFrac(){
-                frac = 1;
-                display.value +=".";
-            }
-            function oper(op1){
-                if (val2 == 0){
-                    val2 = val1;
-                    if (frac > 0)
-                        val2 /=frac;
-                    val1 = 0;
-                    frac = 0;
-                } else {
-                    if (frac > 0){
-                        val1 /= frac;
-                        frac = 0;
-                    }
-                }
-                switch(op){
-                    case "+": val2 +=val1; val1 = 0;break;
-                    case "-": val2 -= val1; val1 = 0;break;
-                    case "*": val2 *= val1; val1 = 0; break;
-                    case "/": val2 /= val1; val1 = 0; break;break;
-                    case "%": val2 %= val1; val1 = 0; break;break;
-                    
-                }
-                op = op1;
-                display.value +=op;
-                if (op == "="){
-                    op = ""; 
-                    display.value = val2; 
-                    val1 = val2;
-                    val2 = 0;
-                }
-                console.log(val2);
-            }
             function clearAll(){
                 display.value = "";
                 val1 = 0;
                 val2 = 0;
             }
-            function cifre( cifra){
-                val1 = val1 * 10 + parseInt(cifra);
-                display.value += (cifra);
-                frac *= 10;
+            function cifre( symbol){
+                //val1 = val1 * 10 + parseInt(cifra);
+                
+                if (symbol == "="){
+                    display.value = eval(display.value); 
+                }else{
+                    display.value += (symbol);
+                }
+                //frac *= 10;
             }
             var clear = document.getElementById("clear");
             var back = document.getElementById("back");
